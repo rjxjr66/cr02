@@ -1,4 +1,4 @@
-export interface Weight {
+export interface IWeight {
     color: number,
     weight: number
 }

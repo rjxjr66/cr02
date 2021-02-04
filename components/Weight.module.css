@@ -1,0 +1,17 @@
+.weight {
+    position: relative;
+}
+
+.weight img {
+    width: 80px;
+    transition: width 1s;
+}
+
+.answer {
+    position: absolute;
+    top: -12px;
+    left: 0;
+    font-weight: bold;
+    word-break: keep-all;
+    text-align: center;
+}

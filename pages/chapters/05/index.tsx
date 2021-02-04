@@ -6,8 +6,8 @@ export default function Chapter5() {
             <Head>
                 <title>차곡차곡 순서대로</title>
             </Head>
-            <ul>
-                <li><a href="05/max">최대값 찾기</a></li>
+            <ul className="index">
+                <a href="05/max"><li>최대값 찾기</li></a>
                 <li>정렬 알고리즘</li>
             </ul>
         </div>

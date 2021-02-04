@@ -1,7 +1,8 @@
 import React from 'react';
+import { Weight } from '.';
 import styles from './Balances.module.css';
 
-export function Balances({ weights }) {
+export function Balances({ weights, onClick, showAnswer }) {
     const state = ((weights)=>{
         if (weights.length == 0) {
             return 0;
@@ -20,11 +21,13 @@ export function Balances({ weights }) {
         <div className={styles.balances} >
             <img className={styles.arms} style={ { "transform": `rotate(${state * 10}deg)` } } src="/images/05/arms.png"></img>
             <img className={styles.pole} src="/images/05/pole.png"></img>
-            <div className={styles.plateContainer}>
-                <img className={styles.plate} style={ { "transform": `translateY(${state * -50}px)` } } src="/images/05/plate.png"></img>
+            <div className={styles.plateContainer} style={ { "transform": `translateY(${state * -50}px)` } }>
+                <img className={styles.plate} src="/images/05/plate.png"></img>
+                { weights.length > 0 ? <Weight weight={weights[0]} onClick={_=>onClick(0)} showAnswer={showAnswer}></Weight> : null }
             </div>
-            <div className={styles.plateContainer}>
-                <img className={styles.plate} style={ { "transform": `translateY(${state * 50}px)` } } src="/images/05/plate.png"></img>
+            <div className={styles.plateContainer} style={ { "transform": `translateY(${state * 50}px)` } }>
+                <img className={styles.plate} src="/images/05/plate.png"></img>
+                { weights.length > 1 ? <Weight weight={weights[1]} onClick={_=>onClick(1)} showAnswer={showAnswer}></Weight> : null }
             </div>
         </div>
     )

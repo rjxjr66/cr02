@@ -16,6 +16,7 @@
     left: 0;
     width: 800px;
     z-index: 0;
+    transition: transform 0.5s
 }
 
 .plateContainer {
@@ -23,6 +24,7 @@
     width: 300px;
     left: -15px;
     top: 60px;
+    transition: transform 0.5s;
 }
 
 .plateContainer:last-of-type {
@@ -32,4 +34,12 @@
 
 .plate {
     width: 100%;
+}
+
+.plateContainer div {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-40%);
+    bottom: 100px;
+    width: 100px;
 }

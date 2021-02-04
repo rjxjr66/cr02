@@ -1,0 +1,35 @@
+.balances {
+    position: relative;
+    min-height: 480px;
+}
+
+.pole {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    transform: translateX(calc(-50% + 23px));
+}
+
+.arms {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    z-index: 0;
+}
+
+.plateContainer {
+    position: absolute;
+    width: 300px;
+    left: -15px;
+    top: 60px;
+}
+
+.plateContainer:last-of-type {
+    left: unset;
+    right: -60px;
+}
+
+.plate {
+    width: 100%;
+}

@@ -1,0 +1,8 @@
+.weights {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weights img {
+    width: 80px;
+}

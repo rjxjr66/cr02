@@ -1,38 +1,16 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { Weights, Balances, IWeight } from '../../../components'
+import { useState } from 'react'
+import { IWeight, BalanceAndWeight } from '../../../components'
 import * as _ from 'lodash';
-import styles from './max.module.css'
 
 export default function Max() {
-    const [ weights, setWeights ] = useState<IWeight[]>([]);
     const [ items, setItems ] = useState<IWeight[]>(_.shuffle([1,2,3,4,5,6,7,8,9,10]).map((weight, index)=>{
         return {
             weight,
             color: index + 1
         }
     }));
-    const [ count, setCount ] = useState<number>(0);
     const [ showAnswer, setShowAnswer] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (weights.length == 2) {
-            setCount(count + 1);
-        }
-    }, [ weights ])
-
-    const pick = (weight: IWeight) => {
-        if (weights.length < 2) {
-            setWeights([ ...weights, weight ])
-            const index = items.findIndex(item=>item === weight);
-            setItems([ ...items.slice(0, index), ...items.slice(index + 1) ])
-        } 
-    }
-
-    const remove = (index) => {
-        setWeights([ ...weights.slice(0, index), ...weights.slice(index + 1) ])
-        setItems([ ...items, weights[index] ])
-    }
 
     return (<div className="container">
         <Head>
@@ -47,9 +25,7 @@ export default function Max() {
         }}>정답 {showAnswer?'감추기':'보기'}</button>
 
         <section className="content">
-            <Balances weights={weights} onClick={remove} showAnswer={showAnswer}></Balances>
-            <Weights items={items} onClick={pick} showAnswer={showAnswer}></Weights>
-            <h2 className={styles.counter}>비교 횟수 : {count}회</h2>
+            <BalanceAndWeight init={items} showAnswer={showAnswer}></BalanceAndWeight>
         </section>
     </div>)
 }

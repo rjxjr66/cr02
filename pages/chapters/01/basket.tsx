@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import * as _ from 'lodash';
-import * as Parser from './parser';
+import * as Parser from '../../../lib/parser';
 import { useState } from 'react';
 
 import styles from './basket.module.css';

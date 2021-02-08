@@ -1,0 +1,42 @@
+.basket {
+    display: flex;
+    margin-top: 16px;
+}
+
+.basket div {
+    flex: 1;
+}
+
+.basket textarea {
+    width: 100%;
+}
+
+.baskets {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.baskets span {
+    flex: 1;
+    padding: 10px;
+    margin: 0 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.baskets span:nth-child(1) {
+    background: red;
+}
+
+.baskets span:nth-child(2) {
+    background: green;
+}
+
+.baskets span:nth-child(3) {
+    background: blue;
+}

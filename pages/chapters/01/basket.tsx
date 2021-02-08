@@ -1,12 +1,68 @@
 import Head from 'next/head'
 import * as _ from 'lodash';
 import * as Parser from './parser';
+import { useState } from 'react';
+
+import styles from './basket.module.css';
+
+const index = {
+    "BASKET_RED": 0,
+    "BASKET_GREEN": 1,
+    "BASKET_BLUE": 2
+}
 
 export default function Basket() {
-    console.log(Parser.parse(`move(BASKET_RED, BASKET_GREEN)
-    move(BASKET_RED, BASKET_GREEN)
-    move(BASKET_RED, BASKET_GREEN)
-    move(BASKET_RED, BASKET_GREEN)`));
+    const [baskets, setBaskets] = useState<string[]>(['농구공', '축구공', null]);
+    const [code, setCode] = useState<string>("");
+
+    const onChange = (e) => {
+        setCode(e.target.value)
+    }
+
+    const run = async () => {
+        if (!code) {
+            alert('먼저 코드를 입력하세요..')
+            return;
+        }
+
+        const init = ['농구공', '축구공', null];
+        try {
+            const parsed = Parser.parse(code);
+            let error = false
+            for (let cmd of parsed) {
+                if (!init[index[cmd[0]]]) {
+                    alert('바구니에 옮길 공이 없습니다.')
+                    error = true
+                    break
+                }
+                if (init[index[cmd[1]]]) {
+                    alert('한 바구니에는 한 개의 공만 넣을 수 있습니다.')
+                    error = true
+                    break
+                }
+
+                init[index[cmd[1]]] = init[index[cmd[0]]]
+                init[index[cmd[0]]] = null
+            }
+
+            setBaskets(init);
+            if (!error) {
+                if (init[0] === '축구공' && init[1] === '농구공') {
+                    alert("정답입니다!");
+                } else {
+                    alert("다시 시도해보세요 ㅠ");
+                }
+            }
+            
+        } catch (err) {
+            alert("코드에 오류가 있습니다.")
+        }
+    }
+
+    const reset = () => {
+        setBaskets(['농구공', '축구공', null]);
+    }
+
 
     return (<div className="container">
         <Head>
@@ -50,9 +106,23 @@ export default function Basket() {
                 </tr>
             </tbody>
         </table>
+        <p>ex) move(BASKET_RED, BASKET_GREEN) : 빨간 바구니에 든 공을 초록 바구니로 옮기는 코드입니다.</p>
 
         <section className="content">
-
+            <div className={styles.basket}>
+                <div className={styles.baskets}>
+                    {baskets.map(basket=>{
+                        return <span>{basket?basket:''}</span>
+                    })}
+                </div>
+                <div>
+                    <button onClick={run}>실행</button>
+                    <button onClick={reset}>바구니 초기화</button>
+                    <textarea placeholder="여기에 코드를 입력하세요.." 
+                        onChange={onChange} cols={30} rows={10} value={code}>
+                    </textarea>
+                </div>
+            </div>
         </section>
     </div>)
 }

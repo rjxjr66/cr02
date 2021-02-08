@@ -4,7 +4,7 @@
 
 Statement
   = move:Move _ others:Statement { return [ move, ...others ] } 
-  / move:Move { return [ move ] }
+  / move:Move _ { return [ move ] }
   
 Move
   = "move" _ "(" _ left:Expression _ "," _ right:Expression _ ")" { return [ left, right ] }

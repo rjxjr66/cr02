@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Head from 'next/head'
-import { BalanceAndWeight, IWeight } from "../../../components";
+import { BalanceAndWeight } from "../../../components";
 import * as _ from 'lodash';
 import { SortableWeights } from "../../../components/SortableWeights";
 
-export default function Sort() {
-    const [ items, setItems ] = useState<IWeight[]>(_.shuffle([1,2,3,4,5,6,7,8,9,10]).map((weight, index)=>{
-        return {
-            weight,
-            color: index + 1
-        }
-    }));
+const items = _.shuffle([1,2,3,4,5,6,7,8,9,10]).map((weight, index)=>{
+    return {
+        weight,
+        color: index + 1
+    }
+});
 
+export default function Sort() {
     return (<div className="container">
         <Head>
             <title>차곡차곡 순서대로 / 정렬하기</title>

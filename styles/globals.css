@@ -42,3 +42,24 @@ ul.index li:active {
     color: #0070f3;
     border-color: #0070f3;
 }
+
+table {
+    width: 100%;
+    border: 1px solid;
+}
+
+table caption {
+    text-align: left;
+}
+
+thead {
+    background: #a4a4a4;
+}
+
+td {
+    background: #f4f4f4;
+}
+
+strong {
+    font-size: 1.2em;
+}

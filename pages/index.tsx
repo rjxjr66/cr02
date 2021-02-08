@@ -15,7 +15,7 @@ export default function Home() {
             <p className={styles.description} >파이썬과 함께 떠나는 컴퓨터 과학 산책</p>
 
             <div className={styles.grid} >
-                <a href="#" className={styles.card} >
+                <a href="/chapters/01" className={styles.card} >
                     <h3> 01. 컴퓨터과학 시작하기 </h3>
                     <ul> 
                         <li>컴퓨터과학을 시작하기 위한 준비운동을 해봅시다.</li>

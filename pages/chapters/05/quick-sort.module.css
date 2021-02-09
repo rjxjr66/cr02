@@ -1,0 +1,26 @@
+.weights {
+    display: flex;
+}
+
+.weights div {
+    flex-grow: 1;
+}
+
+.fixed {
+    background: #f4f4f4;
+}
+
+.current {
+    border: 3px dotted gray;
+}
+
+.instruction {
+    margin: 32px 8px 16px 8px;
+    font-size: 24px;
+}
+
+.check {
+    display: flex;
+    justify-content: flex-end;
+    margin: 8px 0 100px 0;
+}

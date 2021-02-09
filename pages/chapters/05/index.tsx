@@ -8,7 +8,8 @@ export default function Chapter5() {
             </Head>
             <ul className="index">
                 <a href="05/max"><li>최대값 찾기</li></a>
-                <a href="05/sort"><li>정렬 알고리즘</li></a>
+                <a href="05/sort"><li>정렬하기</li></a>
+                <a href="05/quick-sort"><li>퀵정렬 알고리즘</li></a>
             </ul>
         </div>
     )

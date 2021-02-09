@@ -39,7 +39,7 @@
 .plateContainer div {
     position: absolute;
     left: 50%;
-    transform: translateX(-40%);
-    bottom: 100px;
+    transform: translateX(-50%);
+    bottom: 110px;
     width: 100px;
 }

@@ -12,7 +12,7 @@ const index = {
 }
 
 export default function Basket() {
-    const [baskets, setBaskets] = useState<string[]>(['농구공', '축구공', null]);
+    const [baskets, setBaskets] = useState<string[]>(['basketball', 'soccerball', null]);
     const [code, setCode] = useState<string>("");
 
     const onChange = (e) => {
@@ -25,7 +25,7 @@ export default function Basket() {
             return;
         }
 
-        const init = ['농구공', '축구공', null];
+        const init = ['basketball', 'soccerball', null];
         try {
             const parsed = Parser.parse(code);
             let error = false
@@ -47,7 +47,7 @@ export default function Basket() {
 
             setBaskets(init);
             if (!error) {
-                if (init[0] === '축구공' && init[1] === '농구공') {
+                if (init[0] === 'soccerball' && init[1] === 'basketball') {
                     alert("정답입니다!");
                 } else {
                     alert("다시 시도해보세요 ㅠ");
@@ -60,7 +60,7 @@ export default function Basket() {
     }
 
     const reset = () => {
-        setBaskets(['농구공', '축구공', null]);
+        setBaskets(['basketball', 'soccerball', null]);
     }
 
 
@@ -111,8 +111,11 @@ export default function Basket() {
         <section className="content">
             <div className={styles.basket}>
                 <div className={styles.baskets}>
-                    {baskets.map(basket=>{
-                        return <span>{basket?basket:''}</span>
+                    {baskets.map((ball, index)=>{
+                        return <div key={index}>
+                            {ball?<img className={styles.ball} src={`/images/01/${ball}.png`}></img>:''}
+                            <img style={{ width: '100px' }} src={`/images/01/basket${index}.png`}></img>
+                        </div>
                     })}
                 </div>
                 <div>

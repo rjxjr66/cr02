@@ -1,45 +1,56 @@
 .balances {
     position: relative;
+    margin-top: 50px;
     min-height: 480px;
 }
 
 .pole {
     position: absolute;
-    width: 400px;
+    width: 200px;
     left: 50%;
-    transform: translateX(calc(-50% + 23px));
+    transform: translateX(calc(-50%));
 }
 
 .arms {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 800px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 580px;
     z-index: 0;
     transition: transform 0.5s
 }
 
 .plateContainer {
     position: absolute;
-    width: 300px;
-    left: -15px;
-    top: 60px;
+    width: 200px;
+    top: 30px;
+    left: 0;
     transition: transform 0.5s;
 }
 
 .plateContainer:last-of-type {
     left: unset;
-    right: -60px;
+    right: 0;
+}
+
+.plateContainer>div {
+    position: absolute;
+    left: 70px;
+    bottom: 60px;
+    z-index: 1;
+}
+
+.plateContainer:last-of-type {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.plateContainer:last-of-type>div {
+    left: unset;
+    right: 60px;
 }
 
 .plate {
-    width: 100%;
-}
-
-.plateContainer div {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 110px;
-    width: 100px;
+    width: 200px;
 }

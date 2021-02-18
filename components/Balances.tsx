@@ -19,7 +19,7 @@ export function Balances({ weights, onClick, showAnswer }) {
 
     return (
         <div className={styles.balances} >
-            <img className={styles.arms} style={ { "transform": `rotate(${state * 10}deg)` } } src="/images/05/arms.png"></img>
+            <img className={styles.arms} style={ { "transform": `translateX(-50%) rotate(${state * 10}deg)` } } src="/images/05/arms.png"></img>
             <img className={styles.pole} src="/images/05/pole.png"></img>
             <div className={styles.plateContainer} style={ { "transform": `translateY(${state * -50}px)` } }>
                 <img className={styles.plate} src="/images/05/plate.png"></img>

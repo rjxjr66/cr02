@@ -1,17 +1,18 @@
 .weight {
     position: relative;
     text-align: center;
+    width: 70px;
 }
 
 .weight img {
-    width: 80px;
-    transition: width 1s;
+    width: 40px;
 }
 
 .answer {
     position: absolute;
-    top: -12px;
-    left: 0;
+    top: -50px;
+    left: -35px;
+    width: 100px;
     font-weight: bold;
     word-break: keep-all;
     text-align: center;

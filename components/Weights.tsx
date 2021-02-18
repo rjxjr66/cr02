@@ -12,7 +12,7 @@ interface IWeightsProps {
 }
 
 export const Weights:React.FC<IWeightsProps> = ({ items, onClick = _=>_, showAnswer = false, draggable = false, groupIndex = null }) => {
-    return <div className={styles.weights}>
+    return <div className={styles.weights} data-index={groupIndex}>
         { items.map((item: IWeight, index: number) => {
             return <Weight draggable={draggable} key={item.color} weight={item} onClick={onClick} showAnswer={showAnswer} groupIndex={groupIndex} index={index}></Weight>
         }) }

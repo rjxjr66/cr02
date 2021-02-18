@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Head from 'next/head'
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+
 import { BalanceAndWeight, IWeight, Weight, Weights } from "../../../components";
 import * as _ from 'lodash';
 import styles from './quick-sort.module.css';
@@ -36,9 +38,7 @@ export default function QuickSort() {
         }
     }
 
-    const onDrop = (e) => {
-        e.stopPropagation();
-
+    const onDragEnd = (result) => {
         const targetGroup = e.target.dataset.index
         const { groupIndex, index } = JSON.parse(e.dataTransfer.getData('application/json'));
 
@@ -107,54 +107,59 @@ export default function QuickSort() {
         }
     }
 
-    const onDragOver = (e) => {
-        e.preventDefault();
-    }
-
     const move = (index) => {
         return state.picked && (index===state.current-1 || index===state.current+1)
     }
 
-    return <div className="container">
-        <Head>
-            <title>차곡차곡 순서대로 / 퀵정렬 알고리즘</title>
-        </Head>
-        <h1>퀵정렬 알고리즘</h1>
-        <p>선택정렬보다 더 빠른 알고리즘인 퀵 정렬 알고리즘에 대해 알아봅시다.</p>
-        <p>실제로 퀵 정렬은 알려져 있는 정렬방법 중에 가장 좋은 방법의 하나입니다.</p>
-        <p>아래 지시대로 수행한 뒤 모두 몇 번 비교해서 정렬했는지 선택 정렬 알고리즘과 비교해보세요.</p>
+    const weights = (index, droppable, provided = null) => {
+        return <div key={index} 
+            className={[droppable?styles.current:'', droppable?'droppable':''].join(' ')}
+        >
+            <Weights
+                innerRef={provided?.innerRef}
+                {...(droppable?provided.droppable:{})}
+                draggable={droppable}
+                groupIndex={index}
+                onClick={item=>pick(items, item)} items={items}>
+                {provided?.placeholder}
+            </Weights>
+        </div>
+    }
 
-        <section className="content">
-            {sorted?(
-                <p className={styles.instruction}>정렬되었습니다!</p>
-            ):(state.picked?(
-                <p className={styles.instruction}>저울을 이용해 기준이 될 추 보다 가벼운 추는 왼쪽, 무거운 추는 오른쪽으로 옮기세요. 다 옮겨졌으면, 다음 버튼을 클릭하세요.</p>
-            ):(
-                <p className={styles.instruction}>기준이 될 추를 하나 고르세요.</p>
-            ))}
-            <div className={styles.weights}>
-                { partition.map((items, index)=>{
-                    if (!(items instanceof Array)) {
-                        return <div key={index} className={styles.fixed}>
-                            <Weight weight={items} onClick={_=>_} showAnswer={false}></Weight>
-                        </div>
-                    } else {
-                        return <div key={index} 
-                            className={[move(index)?styles.current:'', move(index)?'droppable':''].join(' ')}
-                            onDrop={onDrop} onDragOver={onDragOver}
-                            data-index={move(index)?index:null}
-                        >
-                            <Weights 
-                                draggable={move(index)}
-                                groupIndex={index}
-                                onClick={item=>pick(items, item)} items={items}>    
-                            </Weights>
-                        </div>
-                    }
-                }) }
-            </div>
-            {state.picked?<div className={styles.check} onClick={check}><button>다음</button></div>:null}
-            <BalanceAndWeight init={items} showAnswer={false}></BalanceAndWeight>
-        </section>
-    </div>
+    return <div className="container">
+            <Head>
+                <title>차곡차곡 순서대로 / 퀵정렬 알고리즘</title>
+            </Head>
+            <h1>퀵정렬 알고리즘</h1>
+            <p>선택정렬보다 더 빠른 알고리즘인 퀵 정렬 알고리즘에 대해 알아봅시다.</p>
+            <p>실제로 퀵 정렬은 알려져 있는 정렬방법 중에 가장 좋은 방법의 하나입니다.</p>
+            <p>아래 지시대로 수행한 뒤 모두 몇 번 비교해서 정렬했는지 선택 정렬 알고리즘과 비교해보세요.</p>
+
+            <section className="content">
+                {sorted?(
+                    <p className={styles.instruction}>정렬되었습니다!</p>
+                ):(state.picked?(
+                    <p className={styles.instruction}>저울을 이용해 기준이 될 추 보다 가벼운 추는 왼쪽, 무거운 추는 오른쪽으로 옮기세요. 다 옮겨졌으면, 다음 버튼을 클릭하세요.</p>
+                ):(
+                    <p className={styles.instruction}>기준이 될 추를 하나 고르세요.</p>
+                ))}
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <div className={styles.weights}>
+                        { partition.map((items, index)=>{
+                            if (!(items instanceof Array)) {
+                                return <div key={index} className={styles.fixed}>
+                                    <Weight weight={items} onClick={_=>_} showAnswer={false}></Weight>
+                                </div>
+                            } else {
+                                return move(index)?<Droppable droppableId={index}>
+                                    {provided => weights(index, true, provided)}
+                                </Droppable>:weights(index, false)
+                            }
+                        }) }
+                    </div>
+                </DragDropContext>
+                {state.picked?<div className={styles.check} onClick={check}><button>다음</button></div>:null}
+                <BalanceAndWeight init={items} showAnswer={false}></BalanceAndWeight>
+            </section>
+        </div>
 }

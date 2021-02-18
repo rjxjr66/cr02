@@ -9,6 +9,7 @@
 .fixed {
     background: #f4f4f4;
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-grow: 0 !important;
 }

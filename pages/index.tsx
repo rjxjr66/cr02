@@ -23,6 +23,13 @@ export default function Home() {
                         <li>컴퓨터가 할 수 있는 두 가지 일에 대해 배웁니다.</li>
                     </ul>
                 </a>
+                <a href="/chapters/02" className={styles.card} >
+                    <h3> 02. 데이터로 표현하기 </h3>
+                    <ul> 
+                        <li>컴퓨터가 데이터를 저장하는 방법을 배웁니다.</li>
+                        <li>0과 1로 여러가지 데이터를 표현하기 위해 규칙을 만들어 봅시다.</li>
+                    </ul>
+                </a>
                 <a href="/chapters/05" className={styles.card} >
                     <h3> 05. 차곡차곡 순서대로 </h3>
                     <ul> 

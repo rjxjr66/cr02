@@ -1,13 +1,13 @@
 import Head from 'next/head'
 
-export default function Chapter1() {
+export default function Chapter2() {
     return (
         <div className="container">
             <Head>
-                <title>컴퓨터과학 시작하기</title>
+                <title>데이터로 표현하기</title>
             </Head>
             <ul className="index">
-                <a href="01/basket"><li>공 옮기기</li></a>
+                <a href="02/string"><li>암호 만들기</li></a>
             </ul>
         </div>
     )
